@@ -9,7 +9,7 @@ import { ShoppingCartProvider } from './context/ShoppingCartContext';
 
 function App() {
   return (
-    <>
+    <ShoppingCartProvider>
       <Navbar/>
       
       <Container>
@@ -21,7 +21,7 @@ function App() {
         </Routes>
 
       </Container>
-    </>
+    </ShoppingCartProvider>
   );
 }
 
