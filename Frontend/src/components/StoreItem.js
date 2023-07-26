@@ -12,7 +12,6 @@ export default function StoreItem({ id, name, price, imgUrl }) {
     } = useShoppingCart();
 
     const quantity = getItemQuantity(id);
-    // const quantity = 0;
 
     return (
         <Card className="h-100">
