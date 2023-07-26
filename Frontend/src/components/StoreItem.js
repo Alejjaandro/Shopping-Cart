@@ -8,7 +8,7 @@ export default function StoreItem({ id, name, price, imgUrl }) {
         getItemQuantity,
         increaseCartQuantity,
         decreaseCartQuantity,
-        removeFromCart
+        removeFromCart,
     } = useShoppingCart();
 
     const quantity = getItemQuantity(id);
@@ -36,7 +36,10 @@ export default function StoreItem({ id, name, price, imgUrl }) {
                     If not, two buttons to increase or decrease the amount and it quantity.
                     */}
                     {quantity === 0 ? (
-                        <Button className="w-100" onClick={() => increaseCartQuantity(id)}> Add to Cart</Button>
+                        <Button className="w-100" onClick={() => {
+                        increaseCartQuantity(id);
+                        // console.log(cartItems);
+                    }}> Add to Cart</Button>
                     ) : <div
                         className="d-flex align-items-center flex-column"
                         style={{ gap: ".5rem" }}
@@ -46,14 +49,23 @@ export default function StoreItem({ id, name, price, imgUrl }) {
                             style={{ gap: ".5rem" }}
                         >
                             {/* Buttons to increase or decrease */}
-                            <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
+                            <Button onClick={() => {
+                                decreaseCartQuantity(id);
+                                // console.log(cartItems);
+                            }}>-</Button>
                             <div>
                                 <span className="fs-3">{quantity}</span> in cart
                             </div>
-                            <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+                            <Button onClick={() => {
+                                increaseCartQuantity(id);
+                                // console.log(cartItems);
+                            }}>+</Button>
                         </div>
                         {/* Button to remove all */}
-                        <Button variant="danger" size="sm" onClick={() => removeFromCart(id)}>Remove</Button>
+                        <Button variant="danger" size="sm" onClick={() =>{
+                            removeFromCart(id);
+                            // console.log(cartItems); 
+                        }}>Remove</Button>
                     </div>}
                 </div>
             </Card.Body>

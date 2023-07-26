@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
+import ShoppingCart from '../components/ShoppingCart';
 
 const ShoppingCartContext = createContext();
 
@@ -10,16 +11,31 @@ export const useShoppingCart = () => {
     return context;
 }
 
+// ----- PROVIDER -----
 export function ShoppingCartProvider({ children }) {
-    // We set initial value of "cartItems" as an object array with "id" and "quantity".
-    const [cartItems, setCartItems] = useState( [ {id: Number, quantity: Number} ] );
 
+    // We set initial value of "cartItems" as an object array.
+    const [cartItems, setCartItems] = useState( [ { id: Number(), quantity: Number() } ] );
+
+    const [isOpen, setIsOpen] = useState(false);
+    
+    // To count the amount of items in the cart.
+    const cartQuantity = cartItems.reduce(
+        (quantity, item) => item.quantity + quantity, 0
+    );
+    
+    // Functions to open and close the cart.
+    const openCart = () => setIsOpen(true);
+    const closeCart = () => setIsOpen(false);
+    
+    // GET ITEM QUANTITY.
     function getItemQuantity(id) {
         // We search for the item with the current "id", if we have it, we return the quantity,
         // if not return a quantity value of 0.
         return cartItems.find(item => item.id === id)?.quantity || 0;
     }
 
+    // INCREASE QUANTITY OF AN ITEM.
     function increaseCartQuantity(id) {
         // To set the car items we create a function:
         // "currItems" is our item list whatever it has.
@@ -30,7 +46,7 @@ export function ShoppingCartProvider({ children }) {
                 We search for an item in our car with the current id, if it is "null" means it
                 doesn't exist, so we add a new item with the id & it's quantity to 1.
                 */
-                return [...currItems, { id, quantity: 1 }]
+                return [...currItems, {id, quantity: 1 } ]
             } else {
                 /* 
                 If we find an item, we go through our item list (currItems) & 
@@ -39,7 +55,7 @@ export function ShoppingCartProvider({ children }) {
                 return currItems.map(item => {
 
                     if (item.id === id) {
-                        return { ...item, quantity: item.quantity + 1 }
+                        return {...item, quantity: item.quantity + 1 }
                     } else {
                         // If the id doesn't match then return the item as it was.
                         return item
@@ -50,6 +66,7 @@ export function ShoppingCartProvider({ children }) {
         })
     }
 
+    // DECREASE QUANTITY OF AN ITEM.
     function decreaseCartQuantity(id) {
 
         setCartItems(currItems => {
@@ -68,7 +85,7 @@ export function ShoppingCartProvider({ children }) {
                 return currItems.map(item => {
 
                     if (item.id === id) {
-                        return { ...item, quantity: item.quantity - 1 }
+                        return {...item, quantity: item.quantity - 1}
                     } else {
                         // If the id doesn't match then return the item as it was.
                         return item
@@ -80,6 +97,7 @@ export function ShoppingCartProvider({ children }) {
         })
     }
 
+    // REMOVE AN ITEM FROM CART.
     function removeFromCart(id) {
         /* 
         We go through currItem and we filter it so it only keep those items 
@@ -95,9 +113,13 @@ export function ShoppingCartProvider({ children }) {
             getItemQuantity,
             increaseCartQuantity,
             decreaseCartQuantity,
-            removeFromCart
+            removeFromCart,
+            cartItems,
+            cartQuantity,
+            openCart, closeCart
         }}>
             {children}
+            <ShoppingCart isOpen={isOpen}/>
         </ShoppingCartContext.Provider>
     )
 }
