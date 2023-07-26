@@ -55,7 +55,7 @@ export default function Navbar() {
                         style={{ 
                             color: "white", 
                             with: "1.5rem", 
-                            height: "1.5rem", 
+                            height: "1.5rem",
                             tranform: "translate(25%, 25%)"
                         }}
                         >

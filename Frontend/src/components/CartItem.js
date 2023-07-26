@@ -5,12 +5,10 @@ import { formatCurrency } from "../utilities/formatCurrency";
 
 export default function CartItem({ id, quantity }) {
 
-    const {removefromCart} = useShoppingCart();
+    const {removeFromCart} = useShoppingCart();
 
     const item = storeItem.find(item=> item.id === id);
     if(item == null) return null;
-
-    console.log(item.id);
 
     return (
         <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
@@ -44,7 +42,7 @@ export default function CartItem({ id, quantity }) {
             </div>
 
             {/* Remove Button */}
-            <Button variant="outline-danger" size="sm" onClick={console.log(item.id)}>
+            <Button variant="outline-danger" size="sm" onClick={() => removeFromCart(id)}>
                 X
             </Button>
         </Stack>

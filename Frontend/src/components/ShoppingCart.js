@@ -5,6 +5,7 @@ import CartItem from './CartItem';
 export default function ShoppingCart({ isOpen }) {
 
     const { closeCart, cartItems } = useShoppingCart();
+    // console.log(cartItems);
 
     return (
         // Component of bootstrap to make the slide in.
@@ -20,7 +21,8 @@ export default function ShoppingCart({ isOpen }) {
             <Offcanvas.Body>
                 <Stack gap={3}>
                     {cartItems.map(item => (
-                        <CartItem key={item.id} {...item} />))}
+                        <CartItem key={item.id} {...item} />
+                    ))}
                 </Stack>
             </Offcanvas.Body>
         </Offcanvas>
