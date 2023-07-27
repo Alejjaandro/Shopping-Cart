@@ -1,5 +1,5 @@
 import StoreItem from '../components/StoreItem';
-import storeItems from '../data/items.json';
+import dataProducts from '../data/items.json';
 import { Row, Col } from 'react-bootstrap';
 
 export default function Store() {
@@ -9,9 +9,9 @@ export default function Store() {
 
       <Row md={2} xs={1} lg={3} className='g-3'>
         {/* We map the array of items to create a card for each one. */}
-        {storeItems.map(item => (
-          <Col key={item.id}>
-            <StoreItem {...item} />
+        {dataProducts.map(product => (
+          <Col key={product.id}>
+            <StoreItem {...product} />
           </Col>
 
         ))}

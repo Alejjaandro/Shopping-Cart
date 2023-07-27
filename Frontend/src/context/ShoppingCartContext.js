@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import ShoppingCart from '../components/ShoppingCart';
+import itemsData from "../data/items.json"
 
 const ShoppingCartContext = createContext();
 
@@ -13,6 +14,9 @@ export const useShoppingCart = () => {
 
 // ----- PROVIDER -----
 export function ShoppingCartProvider({ children }) {
+
+    const data = itemsData;
+    console.log(data);
 
     // We set initial value of "cartItems" as an object array.
     const [cartItems, setCartItems] = useState( [ { id: Number(), quantity: Number() } ] );

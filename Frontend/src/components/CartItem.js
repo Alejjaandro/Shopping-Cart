@@ -1,11 +1,12 @@
 import { Button, Stack } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { useShoppingCartV2 } from "../context/ShoppingCartContextV2";
 import storeItems from "../data/items.json";
 import { formatCurrency } from "../utilities/formatCurrency";
 
 export default function CartItem({ id, quantity }) {
 
-    const {removeFromCart} = useShoppingCart();
+    const {removeProduct} = useShoppingCartV2();
 
     const item = storeItems.find(item=> item.id === id);
     if(item == null) return null;
@@ -42,7 +43,7 @@ export default function CartItem({ id, quantity }) {
             </div>
 
             {/* Remove Button */}
-            <Button variant="outline-danger" size="sm" onClick={() => removeFromCart(id)}>
+            <Button variant="outline-danger" size="sm" onClick={() => removeProduct(id)}>
                 X
             </Button>
         </Stack>

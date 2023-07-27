@@ -3,10 +3,11 @@ import { useShoppingCart } from '../context/ShoppingCartContext';
 import CartItem from './CartItem';
 import storeItems from "../data/items.json";
 import { formatCurrency } from '../utilities/formatCurrency';
+import { useShoppingCartV2 } from '../context/ShoppingCartContextV2';
 
 export default function ShoppingCart({ isOpen }) {
 
-    const { closeCart, cartItems } = useShoppingCart();
+    const { closeCart, cartItems } = useShoppingCartV2();
     // console.log(cartItems);
 
     return (

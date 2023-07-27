@@ -5,11 +5,12 @@ import Store from './pages/Store';
 import About from './pages/About';
 import Navbar from './components/Navbar';
 import { ShoppingCartProvider } from './context/ShoppingCartContext';
+import { ShoppingCartProviderV2 } from './context/ShoppingCartContextV2';
 
 
 function App() {
   return (
-    <ShoppingCartProvider>
+    <ShoppingCartProviderV2>
       <Navbar/>
       
       <Container>
@@ -21,7 +22,7 @@ function App() {
         </Routes>
 
       </Container>
-    </ShoppingCartProvider>
+    </ShoppingCartProviderV2>
   );
 }
 
